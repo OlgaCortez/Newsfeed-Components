@@ -112,3 +112,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+window.addEventListener('load', event => {
+
+const articles = document.querySelector('.articles');
+
+data.forEach(info => {
+  articles.appendChild(createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph ))
+});
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstParagraph = document.createElement('p');
+  const articleSecondParagraph = document.createElement('p');
+  const articleThirdParagraph = document.createElement('p');
+  const articleExpandButton = document.createElement('span');
+  const buttonOpen = document.createElement('expandButton');
+  const articleOpen = document.createElement('article-open');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstParagraph);
+  article.appendChild(articleSecondParagraph);
+  article.appendChild(articleThirdParagraph);
+  article.appendChild(articleExpandButton);
+  article.appendChild(buttonOpen);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleFirstParagraph.classList.add('firstParagraph');
+  articleSecondParagraph.classList.add('secondParagraph');
+  articleThirdParagraph.classList.add('thirdParagraph');
+  articleExpandButton.classList.add('expandButton');
+  buttonOpen.classList.add('expandButton-open');
+  articleOpen.classList.add('article-open');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  buttonOpen.textContent = open;
+  articleOpen.textContent = articleFirstParagraph, articleSecondParagraph, articleThirdParagraph;
+  // articleFirstParagraph.textContent = firstParagraph;
+  // articleSecondParagraph.textContent = secondParagraph;
+  // articleThirdParagraph.textContent = thirdParagraph;
+
+  articleExpandButton.addEventListener('click', event => {
+     articleOpen.classList.toggle('toggle-on');
+   });
+
+
+  return article;
+}
+})
