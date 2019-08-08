@@ -112,3 +112,58 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+window.addEventListener('load', event => {
+
+const articles = document.querySelector('.articles');
+
+// data.forEach(info => {
+//   articles.appendChild(createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph ))
+// });
+
+function createArticle(info){
+
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  // expandButton.addEventListener('toggle', (event) => {
+  // expandButton.classList.toggle('article-open');
+  //   });
+
+  expandButton.addEventListener('click', (event) => {
+  articleOpen.classList.toggle('article-open');
+  });
+
+  title.textContent = info.title;
+  date.textContent = info.date;  
+  firstParagraph.textContent = info.firstParagraph;
+  secondParagraph.textContent = info.secondParagraph;
+  thirdParagraph.textContent = info.thirdParagraph;
+
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(expandButton);
+
+ 
+  return article;
+
+
+}
+
+data.forEach(currentData => {
+  articles.appendChild(createArticle(currentData));
+});
+})
