@@ -117,52 +117,53 @@ window.addEventListener('load', event => {
 
 const articles = document.querySelector('.articles');
 
-data.forEach(info => {
-  articles.appendChild(createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph ))
-});
+// data.forEach(info => {
+//   articles.appendChild(createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph ))
+// });
 
-function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+function createArticle(info){
 
   const article = document.createElement('div');
-  const articleTitle = document.createElement('h2');
-  const articleDate = document.createElement('p');
-  const articleFirstParagraph = document.createElement('p');
-  const articleSecondParagraph = document.createElement('p');
-  const articleThirdParagraph = document.createElement('p');
-  const articleExpandButton = document.createElement('span');
-  const buttonOpen = document.createElement('expandButton');
-  const articleOpen = document.createElement('article-open');
-
-  article.appendChild(articleTitle);
-  article.appendChild(articleDate);
-  article.appendChild(articleFirstParagraph);
-  article.appendChild(articleSecondParagraph);
-  article.appendChild(articleThirdParagraph);
-  article.appendChild(articleExpandButton);
-  article.appendChild(buttonOpen);
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
 
   article.classList.add('article');
-  articleDate.classList.add('date');
-  articleFirstParagraph.classList.add('firstParagraph');
-  articleSecondParagraph.classList.add('secondParagraph');
-  articleThirdParagraph.classList.add('thirdParagraph');
-  articleExpandButton.classList.add('expandButton');
-  buttonOpen.classList.add('expandButton-open');
-  articleOpen.classList.add('article-open');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
 
-  articleTitle.textContent = title;
-  articleDate.textContent = date;
-  buttonOpen.textContent = open;
-  articleOpen.textContent = articleFirstParagraph, articleSecondParagraph, articleThirdParagraph;
-  // articleFirstParagraph.textContent = firstParagraph;
-  // articleSecondParagraph.textContent = secondParagraph;
-  // articleThirdParagraph.textContent = thirdParagraph;
+  // expandButton.addEventListener('toggle', (event) => {
+  // expandButton.classList.toggle('article-open');
+  //   });
 
-  articleExpandButton.addEventListener('click', event => {
-     articleOpen.classList.toggle('toggle-on');
-   });
+  expandButton.addEventListener('click', (event) => {
+  articleOpen.classList.toggle('article-open');
+  });
+
+  title.textContent = info.title;
+  date.textContent = info.date;  
+  firstParagraph.textContent = info.firstParagraph;
+  secondParagraph.textContent = info.secondParagraph;
+  thirdParagraph.textContent = info.thirdParagraph;
 
 
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(expandButton);
+
+ 
   return article;
+
+
 }
+
+data.forEach(currentData => {
+  articles.appendChild(createArticle(currentData));
+});
 })
